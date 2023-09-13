@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": [
-      "dom",
-      "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
@@ -13,14 +10,9 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": false,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "noEmit": true
   },
-  "include": [
-    "src"
-  ]
 }

@@ -13,7 +13,7 @@
   "contracts": [
     {
       "name": "MyContract1",
-      "src": "./test/contracts/GenericContract.sol",
+      "src": "./contracts/GenericContract.sol",
       "networks": {
         "ethereum": {
           "address": "0x1234567890abcdef1234567890abcdef12345678"
@@ -25,7 +25,7 @@
     },
     {
       "name": "MyContract2",
-      "src": "./test/contracts/TestERC20Token.sol",
+      "src": "./contracts/TestERC20Token.sol",
       "networks": {
         "ethereum": {
           "address": "0x1234567890abcdef1234567890abcdef12345678"
