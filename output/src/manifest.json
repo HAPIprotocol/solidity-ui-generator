@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "My App"
+  },
+  "networks": {
+    "ethereum": {
+      "provider": "https://mainnet.infura.io/v3/1234567890abcdef"
+    },
+    "linea": {
+      "provider": "https://rpc.tch.in.th"
+    }
+  },
+  "contracts": [
+    {
+      "name": "MyContract1",
+      "src": "./contracts/GenericContract.sol",
+      "networks": {
+        "ethereum": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        },
+        "linea": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    },
+    {
+      "name": "MyContract2",
+      "src": "./contracts/TestERC20Token.sol",
+      "networks": {
+        "ethereum": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        },
+        "linea": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    }
+  ]
+}
