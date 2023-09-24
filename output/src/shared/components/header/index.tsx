@@ -4,7 +4,12 @@ const Header: React.FC = () => {
   return (
     <header className='bg-black'>
       <nav
-        className='flex  items-center justify-between p-6'
+        className='
+        flex
+        items-center
+        justify-between
+        p-6
+        '
         aria-label='Global'>
         <div className='flex'>
           <a
@@ -20,7 +25,15 @@ const Header: React.FC = () => {
         <div className=''>
           <a
             href='#'
-            className='text-sm font-semibold leading-6 text-white'>
+            className='
+            rounded
+            h-screen
+            font-semibold
+            leading-6
+            text-white
+            border
+            p-3
+            '>
             Connect Wallet
           </a>
         </div>
