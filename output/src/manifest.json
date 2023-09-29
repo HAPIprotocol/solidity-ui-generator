@@ -1,0 +1,243 @@
+{
+  "app": {
+    "title": "My App"
+  },
+  "networks": {
+    "ethereum": {
+      "provider": "https://mainnet.infura.io/v3/1234567890abcdef"
+    },
+    "linea": {
+      "provider": "https://rpc.tch.in.th"
+    }
+  },
+  "chains": [
+    {
+      "id": 11155111,
+      "network": "sepolia",
+      "name": "Sepolia",
+      "nativeCurrency": {
+        "name": "Sepolia Ether",
+        "symbol": "SEP",
+        "decimals": 18
+      },
+      "rpcUrls": {
+        "alchemy": {
+          "http": ["https://eth-sepolia.g.alchemy.com/v2"],
+          "webSocket": ["wss://eth-sepolia.g.alchemy.com/v2"]
+        },
+        "infura": {
+          "http": ["https://sepolia.infura.io/v3"],
+          "webSocket": ["wss://sepolia.infura.io/ws/v3"]
+        },
+        "default": {
+          "http": ["https://rpc.notadegen.com/eth/sepolia"]
+        },
+        "public": {
+          "http": ["https://rpc.notadegen.com/eth/sepolia"]
+        }
+      },
+      "blockExplorers": {
+        "etherscan": {
+          "name": "Etherscan",
+          "url": "https://sepolia.etherscan.io"
+        },
+        "default": {
+          "name": "Etherscan",
+          "url": "https://sepolia.etherscan.io"
+        }
+      },
+      "contracts": {
+        "multicall3": {
+          "address": "0xca11bde05977b3631167028862be2a173976ca11",
+          "blockCreated": 6507670
+        },
+        "ensRegistry": {
+          "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
+        },
+        "ensUniversalResolver": {
+          "address": "0x21B000Fd62a880b2125A61e36a284BB757b76025",
+          "blockCreated": 3914906
+        }
+      },
+      "testnet": true
+    },
+    {
+      "id": 5,
+      "network": "goerli",
+      "name": "Goerli",
+      "nativeCurrency": {
+        "name": "Goerli Ether",
+        "symbol": "ETH",
+        "decimals": 18
+      },
+      "rpcUrls": {
+        "alchemy": {
+          "http": ["https://eth-goerli.g.alchemy.com/v2"],
+          "webSocket": ["wss://eth-goerli.g.alchemy.com/v2"]
+        },
+        "infura": {
+          "http": ["https://goerli.infura.io/v3"],
+          "webSocket": ["wss://goerli.infura.io/ws/v3"]
+        },
+        "default": {
+          "http": ["https://rpc.ankr.com/eth_goerli"]
+        },
+        "public": {
+          "http": ["https://rpc.ankr.com/eth_goerli"]
+        }
+      },
+      "blockExplorers": {
+        "etherscan": {
+          "name": "Etherscan",
+          "url": "https://goerli.etherscan.io"
+        },
+        "default": {
+          "name": "Etherscan",
+          "url": "https://goerli.etherscan.io"
+        }
+      },
+      "contracts": {
+        "ensRegistry": {
+          "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
+        },
+        "ensUniversalResolver": {
+          "address": "0x56522D00C410a43BFfDF00a9A569489297385790",
+          "blockCreated": 8765204
+        },
+        "multicall3": {
+          "address": "0xca11bde05977b3631167028862be2a173976ca11",
+          "blockCreated": 6507670
+        }
+      },
+      "testnet": true
+    }
+  ],
+  "contracts": [
+    {
+      "name": "MyContract1",
+      "src": "./contracts/GenericContract.sol",
+      "networks": {
+        "ethereum": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        },
+        "linea": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    },
+    {
+      "name": "MyContract2",
+      "src": "./contracts/TestERC20Token.sol",
+      "chains": [
+        {
+          "id": 11155111,
+          "network": "sepolia",
+          "name": "Sepolia",
+          "nativeCurrency": {
+            "name": "Sepolia Ether",
+            "symbol": "SEP",
+            "decimals": 18
+          },
+          "rpcUrls": {
+            "alchemy": {
+              "http": ["https://eth-sepolia.g.alchemy.com/v2"],
+              "webSocket": ["wss://eth-sepolia.g.alchemy.com/v2"]
+            },
+            "infura": {
+              "http": ["https://sepolia.infura.io/v3"],
+              "webSocket": ["wss://sepolia.infura.io/ws/v3"]
+            },
+            "default": {
+              "http": ["https://rpc.notadegen.com/eth/sepolia"]
+            },
+            "public": {
+              "http": ["https://rpc.notadegen.com/eth/sepolia"]
+            }
+          },
+          "blockExplorers": {
+            "etherscan": {
+              "name": "Etherscan",
+              "url": "https://sepolia.etherscan.io"
+            },
+            "default": {
+              "name": "Etherscan",
+              "url": "https://sepolia.etherscan.io"
+            }
+          },
+          "contracts": {
+            "multicall3": {
+              "address": "0xca11bde05977b3631167028862be2a173976ca11",
+              "blockCreated": 6507670
+            },
+            "ensRegistry": {
+              "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
+            },
+            "ensUniversalResolver": {
+              "address": "0x21B000Fd62a880b2125A61e36a284BB757b76025",
+              "blockCreated": 3914906
+            }
+          },
+          "testnet": true
+        },
+        {
+          "id": 5,
+          "network": "goerli",
+          "name": "Goerli",
+          "nativeCurrency": {
+            "name": "Goerli Ether",
+            "symbol": "ETH",
+            "decimals": 18
+          },
+          "rpcUrls": {
+            "alchemy": {
+              "http": ["https://eth-goerli.g.alchemy.com/v2"],
+              "webSocket": ["wss://eth-goerli.g.alchemy.com/v2"]
+            },
+            "infura": {
+              "http": ["https://goerli.infura.io/v3"],
+              "webSocket": ["wss://goerli.infura.io/ws/v3"]
+            },
+            "default": {
+              "http": ["https://rpc.ankr.com/eth_goerli"]
+            },
+            "public": {
+              "http": ["https://rpc.ankr.com/eth_goerli"]
+            }
+          },
+          "blockExplorers": {
+            "etherscan": {
+              "name": "Etherscan",
+              "url": "https://goerli.etherscan.io"
+            },
+            "default": {
+              "name": "Etherscan",
+              "url": "https://goerli.etherscan.io"
+            }
+          },
+          "contracts": {
+            "ensRegistry": {
+              "address": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e"
+            },
+            "ensUniversalResolver": {
+              "address": "0x56522D00C410a43BFfDF00a9A569489297385790",
+              "blockCreated": 8765204
+            },
+            "multicall3": {
+              "address": "0xca11bde05977b3631167028862be2a173976ca11",
+              "blockCreated": 6507670
+            }
+          },
+          "testnet": true
+        }
+      ],
+      "networks": {
+        "ethereum": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        },
+        "linea": {
+          "address": "0x1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    }
+  ]
+}
