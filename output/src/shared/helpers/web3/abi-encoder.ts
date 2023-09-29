@@ -1,9 +1,11 @@
+import { EMPTY_STRING } from 'shared/constants';
+
 const ARGS_TYPE_PATTERN = /([a-zA-Z0-9]+)(\[(\d*)\])?/;
 
 const getTypeInfo = (type: string) => {
   const matchResult = type.match(ARGS_TYPE_PATTERN);
   if (!matchResult)
-    return { actualType: '', argCount: undefined, isArray: false };
+    return { actualType: EMPTY_STRING, argCount: undefined, isArray: false };
   const [, _type, isArray, argCount] = Array.from(matchResult);
 
   return {
@@ -15,7 +17,7 @@ const getTypeInfo = (type: string) => {
 
 const getPlaceholder = (type: string) => {
   const _getPlaceholder = (_type: string) => {
-    let _val: number | string = '';
+    let _val: number | string = EMPTY_STRING;
     switch (_type) {
       case 'uint':
       case 'uint8':

@@ -1,42 +1,34 @@
+import Big from 'big.js';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
+import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 import manifest from 'manifest.json';
+import { EMPTY_STRING } from 'shared/constants';
 import { getPlaceholder } from 'shared/helpers/web3/abi-encoder';
-import { ABIEntry } from 'shared/models';
+import { ABIEntry, IContractInfo } from 'shared/models';
+import { useContractContext } from 'shared/providers/contract';
+import { getAbiPaths } from 'shared/utils/formatString';
+import { formatType } from 'shared/utils/formatTypes';
 
 import List from './components/List';
 import InputWithLabel from '../InputWithLabel';
 
-interface IContractInfo {
-  name: string;
-  src: string;
-  networks: {
-    [network: string]: {
-      address: string;
-    };
-  };
-}
+export type FormValues = {
+  arguments: { name: string; type: string; value: string }[];
+};
 
 const ContractResult: React.FC = () => {
   const [abi, setAbi] = useState<ABIEntry[]>([]);
-  const [selectedContract, setSelectedContract] =
-    useState<IContractInfo | null>(null);
   const [inputArguments, setInputArguments] = useState<
     Array<{ name: string; type: string }>
   >([]);
 
-  const contractPath = selectedContract?.src.split('/') || [' '];
-
-  const contractPathDirectory = contractPath[contractPath.length - 1];
-
-  const lastDotIndex = contractPathDirectory.lastIndexOf('.');
-
-  const nameAbiFile = contractPathDirectory.slice(0, lastDotIndex);
-
-  const isNotUploadedFiles = !contractPathDirectory || !nameAbiFile;
+  const { setSelectedContract, selectedContract } = useContractContext();
 
   const contractButtonActive = 'bg-amber-50 text-black';
+  const { nameAbiFile, contractPathDirectory, isNotUploadedFiles } =
+    getAbiPaths(selectedContract);
 
   useEffect(() => {
     const getAbi = async () => {
@@ -53,6 +45,39 @@ const ContractResult: React.FC = () => {
     };
     getAbi();
   }, [contractPathDirectory]);
+
+  const defaultValues = {
+    arguments: inputArguments,
+  };
+
+  const methods = useForm<FormValues>({
+    mode: 'all',
+    reValidateMode: 'onChange',
+    defaultValues,
+  });
+
+  const { control, handleSubmit, setValue } = methods;
+  const { fields } = useFieldArray({
+    name: 'arguments',
+    control,
+  });
+
+  useEffect(() => {
+    const newArray = inputArguments.map((el) => ({
+      ...el,
+      value: EMPTY_STRING,
+    }));
+    setValue('arguments', newArray);
+  }, [inputArguments, setValue]);
+
+  const onSubmit = (data: FormValues) => {
+    const params: (string | Big)[] = [];
+    const valuesArray = data.arguments.map((arg) => {
+      return { value: formatType(arg.type, arg.value) };
+    });
+    valuesArray.forEach((el) => params.push(el.value));
+    console.log(params);
+  };
 
   return (
     <div className='flex h-screen bg-black'>
@@ -97,7 +122,7 @@ const ContractResult: React.FC = () => {
                 'transition',
                 contract.name === selectedContract?.name && contractButtonActive
               )}
-              onClick={() => setSelectedContract(contract)}
+              onClick={() => setSelectedContract(contract as IContractInfo)}
               key={contract.name}>
               {contract.name}
             </button>
@@ -107,34 +132,46 @@ const ContractResult: React.FC = () => {
           <>
             {inputArguments.length ? (
               <>
-                {inputArguments.map((input, index) => (
-                  <InputWithLabel
-                    key={`input-${index}`}
-                    placeholder={getPlaceholder(input.type)}
-                    label={`${input.name || '<input>'} (${input.type})`}
-                  />
-                ))}
-                <div
-                  className='
-            write-button
-            w-20
-            h-10
-            bg-amber-50
-            rounded mt-5
-            flex
-            justify-center
-            align-middle
-            items-center
-            cursor-pointer
-            hover:bg-amber-100
-            transition
-            '
-                  onClick={() => undefined}>
-                  Write
-                </div>
+                <FormProvider {...methods}>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    {fields.map((input, index) => (
+                      <InputWithLabel
+                        key={`input-${index}`}
+                        index={index}
+                        placeholder={getPlaceholder(input.type)}
+                        label={`${input.name || '<input>'} (${input.type})`}
+                      />
+                    ))}
+                    <input
+                      type='submit'
+                      value='Write'
+                      className='
+                        write-button
+                        w-20
+                        h-10
+                        bg-amber-50
+                        rounded mt-5
+                        flex
+                        justify-center
+                        align-middle
+                        items-center
+                        cursor-pointer
+                        hover:bg-amber-100
+                        transition
+                        '
+                    />
+                  </form>
+                </FormProvider>
               </>
             ) : (
-              <></>
+              <span
+                className='
+                text-gray-50
+                mt-10
+                block
+                '>
+                You have to choose method
+              </span>
             )}
           </>
         </div>

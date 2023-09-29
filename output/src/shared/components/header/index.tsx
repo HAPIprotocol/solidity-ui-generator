@@ -1,6 +1,18 @@
+import { getAccount } from '@wagmi/core';
+import { useWeb3Modal } from '@web3modal/react';
 import React from 'react';
 
+import { useContractContext } from 'shared/providers/contract';
+import { sliceString } from 'shared/utils/formatString';
+
 const Header: React.FC = () => {
+  const { open } = useWeb3Modal();
+  const { address } = getAccount();
+
+  const connectWallet = async () => await open();
+
+  const { selectedContract } = useContractContext();
+
   return (
     <header className='bg-black'>
       <nav
@@ -23,9 +35,11 @@ const Header: React.FC = () => {
           </a>
         </div>
         <div className=''>
-          <a
-            href='#'
-            className='
+          {selectedContract && (
+            <a
+              onClick={connectWallet}
+              href='#'
+              className='
             rounded
             h-screen
             font-semibold
@@ -34,8 +48,9 @@ const Header: React.FC = () => {
             border
             p-3
             '>
-            Connect Wallet
-          </a>
+              {address ? sliceString(address) : ' Connect Wallet'}
+            </a>
+          )}
         </div>
       </nav>
     </header>

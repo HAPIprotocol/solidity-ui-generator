@@ -13,8 +13,8 @@ const environments: { [key in EEnvironment]: IConfig } = {
 };
 
 const currentEnvironment: EEnvironment =
-  (process.env.ENVIRONMENT as EEnvironment) || EEnvironment.MAINNET;
+  (process.env.REACT_APP_ENVIRONMENT as EEnvironment) || EEnvironment.MAINNET;
 
-export const { walletConnectProjectId, chains }: IConfig = {
+export const { walletConnectProjectId }: IConfig = {
   ...environments[currentEnvironment],
 };

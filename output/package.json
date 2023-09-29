@@ -2,14 +2,21 @@
   "name": "app-template",
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@types/big.js": "^6.2.0",
+    "@wagmi/core": "^1.4.2",
     "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
+    "@web3modal/wagmi": "^3.0.2",
+    "big.js": "^6.2.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.2",
     "react-icons": "^4.11.0",
-    "viem": "^1.10.14",
+    "viem": "^1.12.2",
     "wagmi": "^1.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zod": "^3.22.2"
   },
   "scripts": {
     "start": "react-scripts start",
